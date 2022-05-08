@@ -32,4 +32,4 @@
 *.app
 
 #STM32
-.metadata
+.metadata/
