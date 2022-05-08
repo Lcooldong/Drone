@@ -116,7 +116,7 @@ int main(void)
   LL_TIM_CC_EnableChannel(TIM3, LL_TIM_CHANNEL_CH4);
   for(int i=0; i< 4; i++)
    	  {
-   		  TIM3->PSC = 500*(i + 1);
+   		  TIM3->PSC = 3000 - 500*i;
    		  printf("TIM3->PSC : %ld\r\n", TIM3->PSC);
    		  HAL_Delay(100);
 
