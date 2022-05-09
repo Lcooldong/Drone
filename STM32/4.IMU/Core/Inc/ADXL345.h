@@ -111,5 +111,12 @@
 #define ADXL345_BAD_ARG    2 // bad method argument
 
 
+typedef struct __ADXL345{
+	I2C_struct I2C;
+	uint8_t accel_address;
+
+}ADXL345;
+
+
 
 #endif /* INC_ADXL345_H_ */

@@ -26,6 +26,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "stdio.h"
+#include "HW579.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -45,6 +46,8 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
+HW579 hw579;
+
 extern uint8_t uart3_rx_flag;
 extern uint8_t uart3_rx_data;
 /* USER CODE END PV */
@@ -106,6 +109,8 @@ int main(void)
   MX_I2C1_Init();
   MX_I2C2_Init();
   /* USER CODE BEGIN 2 */
+  HW579_Init(&hw579, I2C1);
+
   LL_TIM_EnableCounter(TIM3);
   LL_USART_EnableIT_RXNE(USART3);	// Receive Complete Interrupt -> IRQ Handler
 
@@ -125,6 +130,8 @@ int main(void)
   float f = 1.234;
   int32_t fToInt = (int32_t)(f * 1000);
   printf("%f %ld\r\n", f, fToInt);
+
+
   while (1)
   {
     /* USER CODE END WHILE */

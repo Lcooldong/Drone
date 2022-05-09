@@ -10,4 +10,6 @@
 
 
 
+
+
 #endif /* SRC_ADXL345_C_ */

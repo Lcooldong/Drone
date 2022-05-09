@@ -24,4 +24,4 @@
 ../Core/Src/i2c.c:28:6:MX_I2C1_Init	64	static
 ../Core/Src/i2c.c:80:6:MX_I2C2_Init	64	static
 ../Core/Src/i2c.c:133:6:I2C_Transmit	32	static
-../Core/Src/i2c.c:161:6:I2C_Receive	40	static
+../Core/Src/i2c.c:167:6:I2C_Receive	40	static

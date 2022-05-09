@@ -1,0 +1,7 @@
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h:1262:26:LL_I2C_IsActiveFlag_RXNE	16	static
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h:1418:26:LL_I2C_IsActiveFlag_BUSY	16	static
+../Core/Src/HMC5883L.c:12:6:Magneto_Writebyte	24	static
+../Core/Src/HMC5883L.c:18:9:Magneto_Readbyte	32	static
+../Core/Src/HMC5883L.c:38:6:Magneto_Init	16	static
+../Core/Src/HMC5883L.c:53:9:SetScale	24	static
+../Core/Src/HMC5883L.c:106:9:SetMeasurementMode	16	static

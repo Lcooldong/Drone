@@ -17,6 +17,8 @@
 #include "math.h"
 #endif
 
+#include "stdio.h"
+
 #ifndef INC_ITG3205_H_
 #define INC_ITG3205_H_
 
@@ -99,8 +101,14 @@
 #define PLL_EXTERNAL32      4   // 32.768 kHz
 #define PLL_EXTERNAL19      5   // 19.2 Mhz
 
+typedef struct __ITG3205{
 
+	I2C_struct I2C;
+	uint8_t gyro_address;
 
+}ITG3205;
+
+void Gyro_Init(ITG3205* itg3205, I2C_TypeDef* i2c);
 
 
 #endif /* INC_ITG3205_H_ */
