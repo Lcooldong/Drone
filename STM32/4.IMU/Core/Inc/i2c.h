@@ -40,7 +40,8 @@ void MX_I2C1_Init(void);
 void MX_I2C2_Init(void);
 
 /* USER CODE BEGIN Prototypes */
-
+void I2C_Transmit(I2C_TypeDef* I2C, uint8_t address, uint8_t* data, uint16_t size);
+void I2C_Receive(I2C_TypeDef* I2C, uint8_t address, uint8_t* outputdata, uint16_t size);
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus

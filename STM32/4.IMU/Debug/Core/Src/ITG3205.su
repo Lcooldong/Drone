@@ -1,0 +1,2 @@
+../Core/Src/ITG3205.c:10:6:Gyro_Writebyte	24	static
+../Core/Src/ITG3205.c:15:9:Gyro_Readbyte	24	static
