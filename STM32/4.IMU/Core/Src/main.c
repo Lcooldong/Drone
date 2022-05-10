@@ -47,6 +47,9 @@
 
 /* USER CODE BEGIN PV */
 HW579 hw579;
+AxisData compassData;
+AccelData accelData;
+
 
 extern uint8_t uart3_rx_flag;
 extern uint8_t uart3_rx_data;
@@ -109,7 +112,7 @@ int main(void)
   MX_I2C1_Init();
   MX_I2C2_Init();
   /* USER CODE BEGIN 2 */
-  HW579_Init(&hw579, I2C1);
+  HW579_Init(&hw579, I2C1, 1.3);
 
   LL_TIM_EnableCounter(TIM3);
   LL_USART_EnableIT_RXNE(USART3);	// Receive Complete Interrupt -> IRQ Handler
@@ -127,9 +130,15 @@ int main(void)
 
    	  }
    LL_TIM_CC_DisableChannel(TIM3, LL_TIM_CHANNEL_CH4);
-  float f = 1.234;
-  int32_t fToInt = (int32_t)(f * 1000);
-  printf("%f %ld\r\n", f, fToInt);
+
+
+//  float f = 1.234;
+//  int32_t fToInt = (int32_t)(f * 1000);
+//  printf("%f %ld\r\n", f, fToInt);
+
+//  float a = 1.3f;
+//  if(a==1.3f)printf("a float\r\n");
+//  else printf("a float not working\r\n");
 
 
   while (1)
@@ -138,8 +147,11 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 
-	  printf("%lf\r\n", (double)fToInt/1000);
-	  fToInt += 1;
+	  Read_Magneto((hw579.MAGNETO), &compassData);
+	  printf("%d %d %d\r\n", compassData.XAxis, compassData.YAxis, compassData.ZAxis);
+
+	  //printf("%lf\r\n", (double)fToInt/1000);
+	  //fToInt += 1;
 	  HAL_Delay(500);
 
 

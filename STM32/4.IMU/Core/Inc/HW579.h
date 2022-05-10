@@ -35,6 +35,9 @@
 #ifndef INC_HW579_H_
 #define INC_HW579_H_
 
+extern HMC5883L hmc5883l;
+extern ADXL345 adxl345;
+extern ITG3205 itg3205;
 
 typedef struct __HW579{
 	I2C_struct I2C;
@@ -47,7 +50,7 @@ typedef struct __HW579{
 
 }HW579;
 
-void HW579_Init(HW579* hw579, I2C_TypeDef* i2c);
+void HW579_Init(HW579* hw579, I2C_TypeDef* i2c, double gauss);
 void getI2C_Address(HW579* hw579);
 
 

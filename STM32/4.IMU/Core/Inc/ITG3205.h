@@ -17,7 +17,13 @@
 #include "math.h"
 #endif
 
+#ifndef _STDIO_H_
 #include "stdio.h"
+#endif
+
+#ifndef _STDBOOL_H
+#include "stdbool.h"
+#endif
 
 #ifndef INC_ITG3205_H_
 #define INC_ITG3205_H_
@@ -108,7 +114,44 @@ typedef struct __ITG3205{
 
 }ITG3205;
 
+typedef struct __GyroData{
+	uint16_t raw_gyro_X;
+	uint16_t raw_gyro_Y;
+	uint16_t raw_gyro_Z;
+
+	double base_gyro_X;
+	double base_gyro_Y;
+	double base_gyro_Z;
+
+	float scaleFactor_X;
+	float scaleFactor_Y;
+	float scaleFactor_Z;
+
+	uint16_t offset_X;
+	uint16_t offset_Y;
+	uint16_t offset_Z;
+
+	double scaled_gyro_X;
+	double scaled_gyro_Y;
+	double scaled_gyro_Z;
+
+	float gyro_Temp;
+
+	double gyro_X;
+	double gyro_Y;
+	double gyro_Z;
+
+
+}GyroData;
+
+void Gyro_Writebyte(ITG3205 * itg3205, uint8_t register_address,uint8_t data);
+uint8_t Gyro_Readbyte(ITG3205 * itg3205, uint8_t register_address);
+
 void Gyro_Init(ITG3205* itg3205, I2C_TypeDef* i2c);
+
+void Read_Gyro(ITG3205* itg3205, GyroData* gyroData);
+void Read_Gyro_Temperature(ITG3205* itg3205, GyroData* gyroData);
+void Calibrate_Gyro(ITG3205* itg3205, GyroData* gyroData, uint16_t totSamples, uint16_t sampleDelayMS);
 
 
 #endif /* INC_ITG3205_H_ */

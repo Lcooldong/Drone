@@ -158,7 +158,7 @@ void I2C_Transmit(I2C_struct* I2C, uint8_t address, uint8_t* data, uint16_t size
 	}
 	while(!LL_I2C_IsActiveFlag_BTF(I2C->I2C));	// wait Byte Transfer Finished flag.
 
-	LL_I2C_GenerateStopCondition(I2C->I2C);		// Stop bit
+	LL_I2C_GenerateStopCondition(I2C->I2C);		// Stop bit (ready last data and NACK)
 
 	I2C->i2c_busy = 0;
 }

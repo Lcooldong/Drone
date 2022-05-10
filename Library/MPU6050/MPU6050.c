@@ -47,7 +47,7 @@ void MPU_Readaccgyro(MPU6050* mpu6050,ANGLE* angle){
 	I2C_Transmit(&mpu6050->I2C,mpu6050->gyro_address,databuf,1);
 	I2C_Receive(&mpu6050->I2C,mpu6050->gyro_address,databuf,14);
 
-	tempmpuaccx=(int16_t)(databuf[00]<<8 | databuf[1]);
+	tempmpuaccx=(int16_t)(databuf[0]<<8 | databuf[1]);
 	tempmpuaccy=(int16_t)(databuf[2]<<8 | databuf[3]);
 	tempmpuaccz=(int16_t)(databuf[4]<<8 | databuf[5]);
 	temp[0]=(int16_t)(databuf[8]<<8 | databuf[9]);

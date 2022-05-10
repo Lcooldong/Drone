@@ -19,7 +19,9 @@ ADXL345 adxl345;
 ITG3205 itg3205;
 
 
-void HW579_Init(HW579* hw579, I2C_TypeDef* i2c)
+
+
+void HW579_Init(HW579* hw579, I2C_TypeDef* i2c, double gauss)
 {
 	hw579->I2C.I2C = i2c;
 	hw579->MAGNETO = &hmc5883l;
@@ -27,8 +29,12 @@ void HW579_Init(HW579* hw579, I2C_TypeDef* i2c)
 	hw579->GYRO    = &itg3205;
 
 	getI2C_Address(hw579);
+	LL_mDelay(100);
 
-	Gyro_Init(&itg3205, i2c);
+	Magneto_Init((hw579->MAGNETO), i2c, gauss);
+	Accel_Init((hw579->ACCEL), i2c);
+	Gyro_Init((hw579->GYRO), i2c);
+
 
 }
 

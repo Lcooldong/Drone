@@ -17,8 +17,9 @@
 #include "math.h"
 #endif
 
+#ifndef _STDIO_H_
 #include "stdio.h"
-
+#endif
 
 #ifndef INC_HMC5883L_H_
 #define INC_HMC5883L_H_
@@ -42,13 +43,35 @@ typedef struct __HMC5883L{
 	I2C_struct I2C;
 	uint8_t compass_address;
 
-	float m_Scale;
+	double m_Scale;
 
 	uint8_t status;
 	uint8_t error_code;
+
 }HMC5883L;
 
-uint8_t SetScale(HMC5883L* hmc5883l, float gauss);
+typedef struct __AxisData{
+	int16_t XAxis;
+	int16_t YAxis;
+	int16_t ZAxis;
+
+	double scaled_XAxis;
+	double scaled_YAxis;
+	double scaled_ZAxis;
+
+	double heading;
+	double headingDegrees;
+}AxisData;
+
+void Magneto_Writebyte(HMC5883L* hmc5883l, uint8_t register_address, uint8_t data);
+uint8_t Magneto_Readbyte(HMC5883L * hmc5883l, uint8_t register_address);
+
+void Magneto_Init(HMC5883L* hmc5883l, I2C_TypeDef* i2c, double gauss);
+
+void ReadRawAxis(HMC5883L* hmc5883l, AxisData* compassData);
+void Read_Magneto(HMC5883L* hmc5883l, AxisData* compassData);
+
+uint8_t SetScale(HMC5883L* hmc5883l, double gauss);
 uint8_t SetMeasurementMode(HMC5883L* hmc5883l , uint8_t mode);
 
 #endif /* INC_HMC5883L_H_ */

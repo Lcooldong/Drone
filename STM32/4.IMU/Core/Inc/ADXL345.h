@@ -5,10 +5,29 @@
  *      Author: user
  */
 
+#ifndef __MAIN_H
+#include "main.h"
+#endif
+
+#ifndef __I2C_H__
+#include "I2C.h"
+#endif
+
+#ifndef _MATH_H_
+#include "math.h"
+#endif
+
+#ifndef _STDIO_H_
+#include "stdio.h"
+#endif
+
+#ifndef _STDBOOL_H
+#include "stdbool.h"
+#endif
+
 #ifndef INC_ADXL345_H_
 #define INC_ADXL345_H_
 
-#include "main.h"
 
 /* ------- Register names ------- */
 #define ADXL345_DEVID 0x00
@@ -115,7 +134,43 @@ typedef struct __ADXL345{
 	I2C_struct I2C;
 	uint8_t accel_address;
 
+	uint8_t status;
+	uint8_t error_code;
+
 }ADXL345;
+
+
+typedef struct __AccelData{
+
+	int8_t offset_X;
+	int8_t offset_Y;
+	int8_t offset_Z;
+
+	int16_t raw_accel_X;
+	int16_t raw_accel_Y;
+	int16_t raw_accel_Z;
+
+	double gain_X;
+	double gain_Y;
+	double gain_Z;
+
+	double scaled_accel_X;
+	double scaled_accel_Y;
+	double scaled_accel_Z;
+
+}AccelData;
+
+
+void Accel_Writebyte(ADXL345 * adxl345, uint8_t register_address, uint8_t data);
+uint8_t Accel_Readbyte(ADXL345 * adxl345,uint8_t register_address);
+void Accel_Init(ADXL345* adxl345, I2C_TypeDef* i2c);
+void Read_Accel(ADXL345* adxl345, AccelData* accelData);
+void Get_Accel(ADXL345* adxl345);
+
+
+bool Get_ACCEL_RegisterBit(ADXL345* adxl345, uint8_t register_address, uint8_t bitPos);
+void Set_ACCEL_RegisterBit(ADXL345* adxl345, uint8_t register_address, uint8_t bitPos, bool _State);
+
 
 
 
