@@ -49,7 +49,7 @@
 HW579 hw579;
 AxisData compassData;
 AccelData accelData;
-
+GyroData gyroData;
 
 extern uint8_t uart3_rx_flag;
 extern uint8_t uart3_rx_data;
@@ -125,7 +125,7 @@ int main(void)
   for(int i=0; i< 4; i++)
    	  {
    		  TIM3->PSC = 3000 - 500*i;
-   		  printf("TIM3->PSC : %ld\r\n", TIM3->PSC);
+   		  //printf("TIM3->PSC : %ld\r\n", TIM3->PSC);
    		  HAL_Delay(100);
 
    	  }
@@ -140,6 +140,10 @@ int main(void)
 //  if(a==1.3f)printf("a float\r\n");
 //  else printf("a float not working\r\n");
 
+  Calibrate_Gyro(hw579.GYRO, &gyroData, 1000, 2);
+
+  printf("%f %f %f\r\n", gyroData.base_gyro_X, gyroData.base_gyro_Y, gyroData.base_gyro_Z);
+  uint8_t debug_buffer[256];
 
   while (1)
   {
@@ -148,7 +152,17 @@ int main(void)
     /* USER CODE BEGIN 3 */
 
 	  Read_Magneto((hw579.MAGNETO), &compassData);
-	  printf("%d %d %d\r\n", compassData.XAxis, compassData.YAxis, compassData.ZAxis);
+	  Read_Accel(hw579.ACCEL, &accelData);
+	  Read_Gyro(hw579.GYRO, &gyroData);
+	  Read_Gyro_Temperature(hw579.GYRO, &gyroData);
+	  sprintf((char*)debug_buffer, "MAGNETO_RAW : %5d %5d %5d | ACCEL_RAW   : %5d %5d %5d | GYRO_RAW    : %5d %5d %5d | %4.2f",
+			  compassData.XAxis, compassData.YAxis, compassData.ZAxis,
+			  accelData.raw_accel_X, accelData.raw_accel_Y, accelData.raw_accel_Z,
+			  gyroData.raw_gyro_X, gyroData.raw_gyro_Y, gyroData.raw_gyro_Z, gyroData.gyro_Temp);
+	  printf("%s\r\n", debug_buffer);
+
+
+
 
 	  //printf("%lf\r\n", (double)fToInt/1000);
 	  //fToInt += 1;

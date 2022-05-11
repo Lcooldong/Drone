@@ -108,24 +108,24 @@ void Set_ACCEL_RangeSetting(ADXL345* adxl345, uint8_t val)
 
 bool Get_ACCEL_SelfTestBit(ADXL345* adxl345)
 {
-	uint8_t received_data[1];
-	received_data[0] = Accel_Readbyte(adxl345, ADXL345_DATA_FORMAT);
-	//return Get_ACCEL_RegisterBit(SENSOR, ADXL345_DATA_FORMAT, 7);
-	return (received_data[0] & DATA_FORMAT_SELF_TEST);
+	//uint8_t received_data[1];
+	//received_data[0] = Accel_Readbyte(adxl345, ADXL345_DATA_FORMAT);
+	return Get_ACCEL_RegisterBit(adxl345, ADXL345_DATA_FORMAT, 7);
+	//return (received_data[0] & DATA_FORMAT_SELF_TEST);
 }
 
 void Set_ACCEL_SelfTestBit(ADXL345* adxl345, bool selfTestBit)
 {
-	uint8_t received_data[1];
-	received_data[0] = Accel_Readbyte(adxl345, ADXL345_DATA_FORMAT);
-	//Set_ACCEL_RegisterBit(SENSOR, ADXL345_DATA_FORMAT, 7, selfTestBit);
-	Accel_Writebyte(adxl345, ADXL345_DATA_FORMAT, (received_data[0] & ~DATA_FORMAT_SELF_TEST ) | selfTestBit << 7);
+	//uint8_t received_data[1];
+	//received_data[0] = Accel_Readbyte(adxl345, ADXL345_DATA_FORMAT);
+	Set_ACCEL_RegisterBit(adxl345, ADXL345_DATA_FORMAT, 7, selfTestBit);
+	//Accel_Writebyte(adxl345, ADXL345_DATA_FORMAT, (received_data[0] & ~DATA_FORMAT_SELF_TEST ) | selfTestBit << 7);
 }
 
 bool Get_ACCEL_SpitBit(ADXL345* adxl345)
 {
 	//uint8_t received_data[1];
-	//received_data[0] = Accel_Readbyte(SENSOR, ADXL345_DATA_FORMAT);
+	//received_data[0] = Accel_Readbyte(adxl345, ADXL345_DATA_FORMAT);
 	return Get_ACCEL_RegisterBit(adxl345, ADXL345_DATA_FORMAT, 6);
 	//return (received_data[0] & DATA_FORMAT_SELF_TEST);
 }
@@ -133,15 +133,15 @@ bool Get_ACCEL_SpitBit(ADXL345* adxl345)
 void Set_ACCEL_SpiBit(ADXL345* adxl345, bool spiBit)
 {
 	//uint8_t received_data[1];
-	//received_data[0] = Accel_Readbyte(SENSOR, ADXL345_DATA_FORMAT);
+	//received_data[0] = Accel_Readbyte(adxl345, ADXL345_DATA_FORMAT);
 	Set_ACCEL_RegisterBit(adxl345, ADXL345_DATA_FORMAT, 6, spiBit);
-	//Accel_Writebyte(SENSOR, ADXL345_DATA_FORMAT, (received_data[0] & ~DATA_FORMAT_SELF_TEST ) | selfTestBit << 6);
+	//Accel_Writebyte(adxl345, ADXL345_DATA_FORMAT, (received_data[0] & ~DATA_FORMAT_SELF_TEST ) | selfTestBit << 6);
 }
 
 bool Get_ACCEL_InterruptLeveltBit(ADXL345* adxl345)
 {
 	//uint8_t received_data[1];
-	//received_data[0] = Accel_Readbyte(SENSOR, ADXL345_DATA_FORMAT);
+	//received_data[0] = Accel_Readbyte(adxl345, ADXL345_DATA_FORMAT);
 	return Get_ACCEL_RegisterBit(adxl345, ADXL345_DATA_FORMAT, 5);
 	//return (received_data[0] & DATA_FORMAT_SELF_TEST);
 }
@@ -149,9 +149,9 @@ bool Get_ACCEL_InterruptLeveltBit(ADXL345* adxl345)
 void Set_ACCEL_InterruptLeveltBit(ADXL345* adxl345, bool interruptLevelBit)
 {
 	//uint8_t received_data[1];
-	//received_data[0] = Accel_Readbyte(SENSOR, ADXL345_DATA_FORMAT);
+	//received_data[0] = Accel_Readbyte(adxl345, ADXL345_DATA_FORMAT);
 	Set_ACCEL_RegisterBit(adxl345, ADXL345_DATA_FORMAT, 5, interruptLevelBit);
-	//Accel_Writebyte(SENSOR, ADXL345_DATA_FORMAT, (received_data[0] & ~DATA_FORMAT_SELF_TEST ) | selfTestBit << 5);
+	//Accel_Writebyte(adxl345, ADXL345_DATA_FORMAT, (received_data[0] & ~DATA_FORMAT_SELF_TEST ) | selfTestBit << 5);
 }
 
 bool Get_ACCEL_FullResBit(ADXL345* adxl345)
