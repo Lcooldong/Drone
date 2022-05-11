@@ -193,12 +193,12 @@ uint8_t Get_ACCEL_TapThreadhold(ADXL345* adxl345)
 	return received_data[0];
 }
 
-void Set_ACCEL_TapThreadhold(ADXL345* adxl345, AccelData* accelData ,uint8_t tapThreadhold)
+void Set_ACCEL_TapThreadhold(ADXL345* adxl345,uint8_t tapThreadhold)
 {
 	Accel_Writebyte(adxl345, ADXL345_THRESH_TAP, tapThreadhold);
 }
 
-double* Get_ACCEL_AxisGain(ADXL345* adxl345, AccelData* accelData, double array[3])
+double* Get_ACCEL_AxisGain(AccelData* accelData, double array[3])
 {
 	array[0] = accelData->gain_X;
 	array[1] = accelData->gain_Y;
@@ -207,7 +207,7 @@ double* Get_ACCEL_AxisGain(ADXL345* adxl345, AccelData* accelData, double array[
 	return array;
 }
 
-void Set_ACCEL_AxisGain(ADXL345* adxl345, AccelData* accelData, double array[3])
+void Set_ACCEL_AxisGain(AccelData* accelData, double array[3])
 {
 	accelData->gain_X = array[0];
 	accelData->gain_Y = array[1];
@@ -623,7 +623,8 @@ void Set_ACCEL_RegisterBit(ADXL345* adxl345, uint8_t register_address, uint8_t b
 	Accel_Writebyte(adxl345, register_address, received_data[0]);
 }
 
-void printAllRegister(ADXL345* adxl345) {
+void printAllRegister(ADXL345* adxl345)
+{
 	uint8_t received_data[1];
 	printf("0x00: ");
 	received_data[0] = Accel_Readbyte(adxl345, 0x00);

@@ -155,7 +155,7 @@ void Set_Gyro_ScaledFactor(ITG3205* itg3205, GyroData* gyroData, float _Xcoeff, 
 
 }
 
-void Set_Gyro_Offsets(ITG3205* itg3205,  GyroData* gyroData, uint16_t _Xoffset, uint16_t _Yoffset, uint16_t _Zoffset)
+void Set_Gyro_Offsets(GyroData* gyroData, uint16_t _Xoffset, uint16_t _Yoffset, uint16_t _Zoffset)
 {
 	gyroData->offset_X = _Xoffset;
 	gyroData->offset_Y = _Yoffset;

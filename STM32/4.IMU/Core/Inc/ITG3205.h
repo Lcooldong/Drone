@@ -144,6 +144,8 @@ typedef struct __GyroData{
 
 }GyroData;
 
+
+
 void Gyro_Writebyte(ITG3205 * itg3205, uint8_t register_address,uint8_t data);
 uint8_t Gyro_Readbyte(ITG3205 * itg3205, uint8_t register_address);
 
@@ -152,6 +154,52 @@ void Gyro_Init(ITG3205* itg3205, I2C_TypeDef* i2c);
 void Read_Gyro(ITG3205* itg3205, GyroData* gyroData);
 void Read_Gyro_Temperature(ITG3205* itg3205, GyroData* gyroData);
 void Calibrate_Gyro(ITG3205* itg3205, GyroData* gyroData, uint16_t totSamples, uint16_t sampleDelayMS);
+void Set_Gyro_ScaledFactor(ITG3205* itg3205, GyroData* gyroData, float _Xcoeff, float _Ycoeff, float _Zcoeff, bool _Radians);
+void Set_Gyro_Offsets(GyroData* gyroData, uint16_t _Xoffset, uint16_t _Yoffset, uint16_t _Zoffset);
 
+uint8_t Get_Gyro_SampleRateDiv(ITG3205* itg3205);
+void Set_Gyro_SampleRateDiv(ITG3205* itg3205, uint8_t _SampleRate);
+uint8_t Get_Gyro_FSRange(ITG3205* itg3205);
+void Set_Gyro_FSRange(ITG3205* itg3205, uint8_t _Range);
+uint8_t Get_Gyro_FilterBW(ITG3205* itg3205);
+void Set_Gyro_FilterBW(ITG3205* itg3205, uint8_t _BW);
+bool is_Gyro_INTActiveOnLow(ITG3205* itg3205);
+void Set_Gyro_INTDriveType(ITG3205* itg3205, bool _State);
+bool is_Gyro_LatchUntilCleard(ITG3205* itg3205);
+void Set_Gyro_LatchMode(ITG3205* itg3205, bool _State);
+bool is_Gyro_AnyRegClrMode(ITG3205* itg3205);
+void Set_Gyro_LatchClearMode(ITG3205* itg3205, bool _State);
+bool is_Gyro_RawDataReadyOn(ITG3205* itg3205);
+void Set_Gyro_RawDataReady(ITG3205* itg3205, bool _State);
+bool is_Gyro_ITGReady(ITG3205* itg3205);
+bool is_Gyro_RawDataReady(ITG3205* itg3205);
+
+void Reset_Gyro(ITG3205* itg3205);
+bool is_Gyro_LowPower(ITG3205* itg3205);
+void Set_Gyro_PowerMode(ITG3205* itg3205, bool _State);
+bool is_XgyroStandby(ITG3205* itg3205);
+bool is_YgyroStandby(ITG3205* itg3205);
+bool is_ZgyroStandby(ITG3205* itg3205);
+void Set_XgyroStandby(ITG3205* itg3205, bool _Status);
+void Set_YgyroStandby(ITG3205* itg3205, bool _Status);
+void Set_ZgyroStandby(ITG3205* itg3205, bool _Status);
+uint16_t Get_ClockSource(ITG3205* itg3205);
+void Set_Gyro_ClockSource(ITG3205* itg3205, uint8_t _CLKsource);
 
 #endif /* INC_ITG3205_H_ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

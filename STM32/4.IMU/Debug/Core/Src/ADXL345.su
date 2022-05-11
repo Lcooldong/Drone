@@ -15,9 +15,9 @@
 ../Core/Src/ADXL345.c:173:6:Get_ACCEL_JustifyBit	16	static
 ../Core/Src/ADXL345.c:181:6:Set_ACCEL_JustifyBit	16	static
 ../Core/Src/ADXL345.c:189:9:Get_ACCEL_TapThreadhold	24	static
-../Core/Src/ADXL345.c:196:6:Set_ACCEL_TapThreadhold	24	static
-../Core/Src/ADXL345.c:201:9:Get_ACCEL_AxisGain	24	static
-../Core/Src/ADXL345.c:210:6:Set_ACCEL_AxisGain	24	static
+../Core/Src/ADXL345.c:196:6:Set_ACCEL_TapThreadhold	16	static
+../Core/Src/ADXL345.c:201:9:Get_ACCEL_AxisGain	16	static
+../Core/Src/ADXL345.c:210:6:Set_ACCEL_AxisGain	16	static
 ../Core/Src/ADXL345.c:218:9:Get_ACCEL_AxisOffset	24	static
 ../Core/Src/ADXL345.c:231:6:Set_ACCEL_AxisOffset	24	static
 ../Core/Src/ADXL345.c:243:9:Get_ACCEL_TapDuration	24	static
@@ -82,4 +82,4 @@
 ../Core/Src/ADXL345.c:604:6:Get_ACCEL_RegisterBit	24	static
 ../Core/Src/ADXL345.c:611:6:Set_ACCEL_RegisterBit	24	static
 ../Core/Src/ADXL345.c:626:6:printAllRegister	24	static
-../Core/Src/ADXL345.c:639:6:print_byte	24	static
+../Core/Src/ADXL345.c:640:6:print_byte	24	static

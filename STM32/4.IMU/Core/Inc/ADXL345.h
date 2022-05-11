@@ -167,11 +167,131 @@ void Accel_Init(ADXL345* adxl345, I2C_TypeDef* i2c);
 void Read_Accel(ADXL345* adxl345, AccelData* accelData);
 void Get_Accel(ADXL345* adxl345);
 
+uint8_t Get_ACCEL_RangeSetting(ADXL345* adxl345, uint8_t rangeSetting);
+void Set_ACCEL_RangeSetting(ADXL345* adxl345, uint8_t val);
+
+bool Get_ACCEL_SelfTestBit(ADXL345* adxl345);
+void Set_ACCEL_SelfTestBit(ADXL345* adxl345, bool selfTestBit);
+
+bool Get_ACCEL_SpitBit(ADXL345* adxl345);
+void Set_ACCEL_SpiBit(ADXL345* adxl345, bool spiBit);
+
+bool Get_ACCEL_InterruptLeveltBit(ADXL345* adxl345);
+void Set_ACCEL_InterruptLeveltBit(ADXL345* adxl345, bool interruptLevelBit);
+
+bool Get_ACCEL_FullResBit(ADXL345* adxl345);
+void Set_ACCEL_FullResBit(ADXL345* adxl345, bool fullResBit);
+
+bool Get_ACCEL_JustifyBit(ADXL345* adxl345);
+void Set_ACCEL_JustifyBit(ADXL345* adxl345, bool justifyBit);
+
+uint8_t Get_ACCEL_TapThreadhold(ADXL345* adxl345);
+void Set_ACCEL_TapThreadhold(ADXL345* adxl345 ,uint8_t tapThreadhold);
+
+double* Get_ACCEL_AxisGain(AccelData* accelData, double array[3]);
+void Set_ACCEL_AxisGain(AccelData* accelData, double array[3]);
+
+int8_t* Get_ACCEL_AxisOffset(ADXL345* adxl345, AccelData* accelData, int8_t received_data[3]);
+void Set_ACCEL_AxisOffset(ADXL345* adxl345, AccelData* accelData, int8_t _Xoffset, int8_t _Yoffset, int8_t _Zoffset);
+
+uint8_t Get_ACCEL_TapDuration(ADXL345* adxl345);
+void Set_ACCEL_TapDuration(ADXL345* adxl345, uint8_t tapDuration);
+
+uint8_t Get_ACCEL_DoubleTapLatency(ADXL345* adxl345);
+void Set_ACCEL_DoubleTapLatency(ADXL345* adxl345, uint8_t doubleTapLatency);
+
+uint8_t Get_ACCEL_DoubleTapWindow(ADXL345* adxl345);
+void Set_ACCEL_DoubleTapWindow(ADXL345* adxl345, uint8_t doubleTapWindow);
+
+uint8_t Get_ACCEL_ActivityThreshold(ADXL345* adxl345);
+void Set_ACCEL_ActivityThreshold(ADXL345* adxl345, uint8_t activityThreshold);
+
+uint8_t Get_ACCEL_InactivityThreshold(ADXL345* adxl345);
+void Set_ACCEL_InactivityThreshold(ADXL345* adxl345, uint8_t inactivityThreshold);
+
+uint8_t Get_ACCEL_TimeInactivity(ADXL345* adxl345);
+void Set_ACCEL_TimeInactivity(ADXL345* adxl345, uint8_t timeInactivity);
+
+uint8_t Get_ACCEL_FreeFallThreshold(ADXL345* adxl345);
+void Set_ACCEL_FreeFallThreshold(ADXL345* adxl345, uint8_t freeFallThreshold);
+
+uint8_t Get_ACCEL_FreeFallDuration(ADXL345* adxl345);
+void Set_ACCEL_FreeFallDuration(ADXL345* adxl345, uint8_t freeFallDuration);
+
+bool is_ACCEL_ActivityXEnabled(ADXL345* adxl345);
+bool is_ACCEL_ActivityYEnabled(ADXL345* adxl345);
+bool is_ACCEL_ActivityZEnabled(ADXL345* adxl345);
+
+bool is_ACCEL_InactivityXEnabled(ADXL345* adxl345);
+bool is_ACCEL_InactivityYEnabled(ADXL345* adxl345);
+bool is_ACCEL_InactivityZEnabled(ADXL345* adxl345);
+
+void Set_ACCEL_ActivityX(ADXL345* adxl345, bool _State);
+void Set_ACCEL_ActivityY(ADXL345* adxl345, bool _State);
+void Set_ACCEL_ActivityZ(ADXL345* adxl345, bool _State);
+
+void Set_ACCEL_InactivityX(ADXL345* adxl345, bool _State);
+void Set_ACCEL_InactivityY(ADXL345* adxl345, bool _State);
+void Set_ACCEL_InactivityZ(ADXL345* adxl345, bool _State);
+
+bool is_ACCEL_ActivityAc(ADXL345* adxl345);
+bool is_ACCEL_InactivityAc(ADXL345* adxl345);
+void Set_ACCEL_ActivityAc(ADXL345* adxl345, bool _State);
+void Set_ACCEL_InactivityAc(ADXL345* adxl345, bool _State);
+
+bool Get_ACCEL_SuppressBit(ADXL345* adxl345);
+void Set_ACCEL_SuppressBit(ADXL345* adxl345, bool _State);
+
+bool is_ACCEL_TapDetectionOnX(ADXL345* adxl345);
+void Set_ACCEL_TapDetectionOnX(ADXL345* adxl345, bool _State);
+bool is_ACCEL_TapDetectionOnY(ADXL345* adxl345);
+void Set_ACCEL_TapDetectionOnY(ADXL345* adxl345, bool _State);
+bool is_ACCEL_TapDetectionOnZ(ADXL345* adxl345);
+void Set_ACCEL_TapDetectionOnZ(ADXL345* adxl345, bool _State);
+
+bool is_ACCEL_ActivitySourceOnX(ADXL345* adxl345);
+bool is_ACCEL_ActivitySourceOnY(ADXL345* adxl345);
+bool is_ACCEL_ActivitySourceOnZ(ADXL345* adxl345);
+
+bool is_ACCEL_TapSourceOnX(ADXL345* adxl345);
+bool is_ACCEL_TapSourceOnY(ADXL345* adxl345);
+bool is_ACCEL_TapSourceOnZ(ADXL345* adxl345);
+
+bool is_ACCEL_Asleep(ADXL345* adxl345);
+bool is_ACCEL_LowPower(ADXL345* adxl345);
+void Set_ACCEL_LowPower(ADXL345* adxl345, bool _State);
+
+double Get_ACCEL_Rate(ADXL345* adxl345);
+void Set_ACCEL_Rate(ADXL345* adxl345, double rate);
+
+uint8_t Get_ACCEL_bw_code(ADXL345* adxl345);
+void Set_ACCEL_bw_code(ADXL345* adxl345, uint8_t bw_code);
+
+bool ACCEL_triggered(uint8_t interrupts, uint8_t mask);
+uint8_t Get_ACCEL_InterruptSource(ADXL345* adxl345);
+bool Get_ACCEL_InterruptMapping(ADXL345* adxl345, uint8_t interruptBit);
+void Set_ACCEL_InterruptMapping(ADXL345* adxl345, uint8_t interruptBit, bool interruptPin);
+bool is_ACCEL_InterruptEnabled(ADXL345* adxl345, uint8_t interruptBit);
+void Set_ACCEL_Interrupt(ADXL345* adxl345, uint8_t interruptBit, bool _State);
 
 bool Get_ACCEL_RegisterBit(ADXL345* adxl345, uint8_t register_address, uint8_t bitPos);
 void Set_ACCEL_RegisterBit(ADXL345* adxl345, uint8_t register_address, uint8_t bitPos, bool _State);
 
-
-
+void printAllRegister(ADXL345* adxl345);
+void print_byte(uint8_t val);
 
 #endif /* INC_ADXL345_H_ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
