@@ -148,6 +148,7 @@ int main(void)
     /* USER CODE BEGIN 3 */
 
 	  Read_Magneto((hw579.MAGNETO), &compassData);
+
 	  printf("%d %d %d\r\n", compassData.XAxis, compassData.YAxis, compassData.ZAxis);
 
 	  //printf("%lf\r\n", (double)fToInt/1000);
