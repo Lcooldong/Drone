@@ -42,7 +42,7 @@ typedef struct{
 	float f_gyx, f_gyy,f_gyz;
 
 	float pitch_offset, roll_offset;		//pitch, roll
-	int16_t gyro_offset[3];				//x,y,z
+	int16_t gyro_cal[3];				//x,y,z
 
 } ANGLE;
 

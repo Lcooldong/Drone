@@ -64,23 +64,24 @@ void MPU_Readaccgyro(MPU6050* mpu6050,ANGLE* angle){
 	angle->getmpuaccx=tempmpuaccx;
 	angle->getmpuaccy=tempmpuaccy;
 	angle->getmpuaccz=tempmpuaccz;
-	angle->f_gyx=((float)(temp[0]-angle->gyro_offset[0]))/65.5;
-	angle->f_gyy=((float)(temp[1]-angle->gyro_offset[1]))/65.5;
-	angle->f_gyz=((float)(temp[2]-angle->gyro_offset[2]))/65.5;
+	angle->f_gyx=((float)(temp[0]-angle->gyro_cal[0]))/65.5;
+	angle->f_gyy=((float)(temp[1]-angle->gyro_cal[1]))/65.5;
+	angle->f_gyz=((float)(temp[2]-angle->gyro_cal[2]))/65.5;
 
 }
 
 
-void MPU_Gyrocali(MPU6050* mpu6050,ANGLE* angle){
+void MPU_Gyrocali(MPU6050* mpu6050, ANGLE* angle){
 	int32_t temp32[3]={0,0,0};
 	int16_t temp16[3];
 	uint8_t databuf[6];
+	databuf[0]=MPU6050_RA_GYRO_XOUT_H;
 	LL_mDelay(100);
 	for(uint32_t i=0;i<2000;i++){
 
 		if(i%100==0)
 			printf("%ld\r\n",i);
-		databuf[0]=MPU6050_RA_GYRO_XOUT_H;
+
 		I2C_Transmit(&mpu6050->I2C,mpu6050->gyro_address,databuf,1);
 		I2C_Receive(&mpu6050->I2C,mpu6050->gyro_address,databuf,6);
 
@@ -92,10 +93,10 @@ void MPU_Gyrocali(MPU6050* mpu6050,ANGLE* angle){
 		temp32[1]+=temp16[1];
 		temp32[2]+=temp16[2];
 	}
-	angle->gyro_offset[0]=temp32[0]/2000;
-	angle->gyro_offset[1]=temp32[1]/2000;
-	angle->gyro_offset[2]=temp32[2]/2000;
-	printf("gy %d %d %d\r\n",angle->gyro_offset[0],angle->gyro_offset[1],angle->gyro_offset[2]);
+	angle->gyro_cal[0]=temp32[0]/2000;
+	angle->gyro_cal[1]=temp32[1]/2000;
+	angle->gyro_cal[2]=temp32[2]/2000;
+	printf("gy %d %d %d\r\n",angle->gyro_cal[0],angle->gyro_cal[1],angle->gyro_cal[2]);
 }
 
 void MPU_Angcali(MPU6050* mpu6050,ANGLE* angle){
@@ -122,9 +123,9 @@ void MPU_Angcali(MPU6050* mpu6050,ANGLE* angle){
 		gettemp[0]=temp[0];
 		gettemp[1]=temp[1];
 		gettemp[2]=temp[2];
-		gettemp[3]=(temp[3]-angle->gyro_offset[0])/65;
-		gettemp[4]=(temp[4]-angle->gyro_offset[0])/65;
-		gettemp[5]=(temp[5]-angle->gyro_offset[0])/65;
+		gettemp[3]=(temp[3]-angle->gyro_cal[0])/65;
+		gettemp[4]=(temp[4]-angle->gyro_cal[0])/65;
+		gettemp[5]=(temp[5]-angle->gyro_cal[0])/65;
 
 		acctotvec=sqrt((float)(gettemp[0]*gettemp[0]/100+gettemp[1]*gettemp[1]/100+gettemp[2]*gettemp[2]/100))*10;
 		accdegx=asin((float)gettemp[0]/acctotvec)*(57.29577951);
